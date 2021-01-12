@@ -60,5 +60,7 @@ public class Main {
 			}
 		}
 		System.out.println("ゲームを終了します");
+		scanner.close();
 	}
+
 }
