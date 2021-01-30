@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.User, model.Mutter, java.util.List" %>
 <%
-/* セッションスコープからユーザー情報、アプリケーションスコープからつぶやきリストを取得  */
+/* セッションスコープからユーザー情報、アプリケーションスコープからつぶやきリスト、
+　　リクエストスコープからエラーメッセージを取得  */
 User loginUser = (User) session.getAttribute("loginUser");
 List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
+String errorMsg = (String) request.getAttribute("errorMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,6 +26,9 @@ List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
 <input type="text" name="text">
 <input type="submit" value="つぶやく">
 </form>
+<% if (errorMsg != null) { %>
+	<P><%= errorMsg %></P>
+<% } %>
 <% for(Mutter mutter : mutterList) { %>
 	<p><%= mutter.getUserName() %>:<%= mutter.getText() %></p>
 <% } %>

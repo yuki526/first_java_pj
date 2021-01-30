@@ -66,10 +66,13 @@ public class Main extends HttpServlet {
 
 			application.setAttribute("mutterList", mutterList);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
-			dispatcher.forward(request, response);
-
+		} else {
+			request.setAttribute("errorMsg","つぶやきが入力されていません");
 		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 }
